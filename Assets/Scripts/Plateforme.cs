@@ -14,6 +14,7 @@ public class Plateforme : MonoBehaviour
     private Vector3 secondPosition;
     private float timePass = 0f;
     private bool backtrack = false;
+
     // Start is called before the first frame update
     void Start()
     {
