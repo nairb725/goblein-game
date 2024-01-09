@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManagerFootstep : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [SerializeField]
     private AudioSource footstepSound;
+
+    [SerializeField]
+    private AudioSource crackGlowingStick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +27,10 @@ public class AudioManagerFootstep : MonoBehaviour
             footstepSound.enabled = false;
 
         }
+        if (Input.GetKey(KeyCode.E))
+        {
+            crackGlowingStick.enabled = true;
+        }
+
     }
 }
