@@ -14,6 +14,11 @@ public class MovementCharacter : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    public bool crouch = false;
+
+    [SerializeField]
+    private float crouchSize= 1f;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -67,6 +72,17 @@ public class MovementCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
         {
             verticalSpeed = CalculateJumpVerticalSpeed();
+        }
+        // Crouch 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("au sol");
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - crouchSize, transform.localScale.z);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Debug.Log("au sol");
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + crouchSize, transform.localScale.z);
         }
 
         moveDirection.y = verticalSpeed;
