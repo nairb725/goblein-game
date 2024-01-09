@@ -38,4 +38,7 @@ public class GameManager : MonoBehaviour
     {
     isLightning = false;
     }
+    public void restockFlare(int nbFlare){
+        FlareNumber += nbFlare;
+    }
 }
