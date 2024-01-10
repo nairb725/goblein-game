@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
             FlareNumber = FlareNumber - 1;
             m_HUDText.text = ("X" + FlareNumber);
             isLightning = true;
+
             Invoke("timeFlare", FlareTimer);
         }
     }
@@ -61,5 +62,9 @@ public class GameManager : MonoBehaviour
 
     public void returnToMenu(){
         SceneManager.LoadScene("MenuScene");
+    }
+
+    public bool getIsLightning(){
+        return isLightning;
     }
 }

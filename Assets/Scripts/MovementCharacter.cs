@@ -25,6 +25,8 @@ public class MovementCharacter : MonoBehaviour
 
     [SerializeField]
     private AudioSource BallWalkSound;
+    [SerializeField]
+    private GameObject light;
 
     [SerializeField]
     private AudioSource FootstepSound;
@@ -34,12 +36,14 @@ public class MovementCharacter : MonoBehaviour
 
     [SerializeField]
     private int SlowInBallPool;
+    private GameManager gameManager;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         moveDirection = Vector3.zero;
         verticalSpeed = 0.0f;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public float Sensitivity
@@ -148,6 +152,8 @@ public class MovementCharacter : MonoBehaviour
         {
             crackGlowingStick.Play();
         }
+        light.SetActive(gameManager.getIsLightning());
+        
 
     }
     float CalculateJumpVerticalSpeed()
