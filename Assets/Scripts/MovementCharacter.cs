@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementCharacter : MonoBehaviour
 {
     [SerializeField]
-    private float CharacterSpeed;
+    private float CharacterSpeed = 2f;
 
     [SerializeField]
     private float verticalSpeed = 2.0F;
@@ -25,6 +25,7 @@ public class MovementCharacter : MonoBehaviour
 
     [SerializeField]
     private AudioSource BallWalkSound;
+
     [SerializeField]
     private GameObject light;
 
@@ -56,12 +57,12 @@ public class MovementCharacter : MonoBehaviour
     [Tooltip("Limits vertical camera rotation. Prevents the flipping that happens when rotation goes above 90.")]
     [Range(0f, 90f)] [SerializeField] float yRotationLimit = 88f;
 
-    Vector2 rotation = Vector2.zero;
-    const string xAxis = "Mouse X"; //Strings in direct code generate garbage, storing and re-using them creates no garbage
+    private Vector2 rotation = Vector2.zero;
+    const string xAxis = "Mouse X";
     const string yAxis = "Mouse Y";
     void Update()
     {
-        //Camera rotation
+        // Camera rotation
         rotation.x += Input.GetAxis(xAxis) * sensitivity;
         rotation.y += Input.GetAxis(yAxis) * sensitivity;
         rotation.y = Mathf.Clamp(rotation.y, -yRotationLimit, yRotationLimit);
@@ -96,12 +97,10 @@ public class MovementCharacter : MonoBehaviour
         // Crouch 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log("au sol");
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y - crouchSize, transform.localScale.z);
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            Debug.Log("au sol");
             transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y + crouchSize, transform.localScale.z);
         }
 
@@ -175,6 +174,7 @@ public class MovementCharacter : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             isOnBall = false;
+            CharacterSpeed = 2f;
         }
     }
 }
