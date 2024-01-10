@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,11 @@ public class GameManager : MonoBehaviour
     private float FlareNumber;
 
     [SerializeField]
+    private float winDelay = 18.0f;
+    [SerializeField]
+    private float loseDelay = 5.0f;
     public bool isLightning = false;
+    private bool isLose = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +45,21 @@ public class GameManager : MonoBehaviour
     }
     public void restockFlare(int nbFlare){
         FlareNumber += nbFlare;
+    }
+
+    public void setLose(){
+        isLose = true;
+    }
+
+    public void endGame() {
+        if(isLose){
+            Invoke("returnToMenu", loseDelay);
+        }else{
+            Invoke("returnToMenu", winDelay);
+        }
+    }
+
+    public void returnToMenu(){
+        SceneManager.LoadScene("MenuScene");
     }
 }
