@@ -32,6 +32,9 @@ public class MovementCharacter : MonoBehaviour
     [SerializeField]
     private AudioSource crackGlowingStick;
 
+    [SerializeField]
+    private int SlowInBallPool;
+
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -157,6 +160,7 @@ public class MovementCharacter : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             isOnBall = true;
+            CharacterSpeed = CharacterSpeed / SlowInBallPool;
         }
     }
 
