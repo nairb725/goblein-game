@@ -16,8 +16,21 @@ public class MovementCharacter : MonoBehaviour
 
     public bool crouch = false;
 
+
+    public bool isOnBall = false;
+    public string targetTag = "BallPool"; // Define the tag to check against
+
     [SerializeField]
     private float crouchSize= 1f;
+
+    [SerializeField]
+    private AudioSource BallWalkSound;
+
+    [SerializeField]
+    private AudioSource FootstepSound;
+
+    [SerializeField]
+    private AudioSource crackGlowingStick;
 
     private void Start()
     {
@@ -87,10 +100,71 @@ public class MovementCharacter : MonoBehaviour
 
         moveDirection.y = verticalSpeed;
         characterController.Move(moveDirection * CharacterSpeed * Time.deltaTime);
-    }
+        // When you crack Stick
 
+        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+        if (isMoving && isOnBall)
+        {
+            if (BallWalkSound != null) // Check the audio source
+            {
+                BallWalkSound.loop = true; // Set sound to loop
+                if (!BallWalkSound.isPlaying)
+                {
+                    BallWalkSound.Play(); // Start playing the sound if not already playing
+                }
+            }
+        }
+        else
+        {
+            if (BallWalkSound != null)
+            {
+                BallWalkSound.loop = false; // Disable looping
+                BallWalkSound.Stop(); // Stop the sound
+            }
+        }
+        if (isMoving && isOnBall == false)
+        {
+            if (FootstepSound != null) // Check the audio source
+            {
+                FootstepSound.loop = true; // Set sound to loop
+                if (!FootstepSound.isPlaying)
+                {
+                    FootstepSound.Play(); // Start playing the sound if not already playing
+                }
+            }
+        }
+        else
+        {
+            if (FootstepSound != null)
+            {
+                FootstepSound.loop = false; // Disable looping
+                FootstepSound.Stop(); // Stop the sound
+            }
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            crackGlowingStick.Play();
+        }
+
+    }
     float CalculateJumpVerticalSpeed()
     {
         return Mathf.Sqrt(2 * Mathf.Abs(Physics.gravity.y) * 0.5f);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(targetTag))
+        {
+            isOnBall = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(targetTag))
+        {
+            isOnBall = false;
+        }
     }
 }

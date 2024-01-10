@@ -10,6 +10,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource crackGlowingStick;
 
+    [SerializeField]
+    private AudioSource BallWalkSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +21,9 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Default Walk
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
+        {
             footstepSound.enabled = true;
         }
         else
@@ -27,9 +31,10 @@ public class AudioManager : MonoBehaviour
             footstepSound.enabled = false;
 
         }
+        // When you crack Stick
         if (Input.GetKey(KeyCode.E))
         {
-            crackGlowingStick.enabled = true;
+            crackGlowingStick.Play();
         }
 
     }
