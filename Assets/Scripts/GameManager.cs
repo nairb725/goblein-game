@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     }
     public void restockFlare(int nbFlare){
         FlareNumber += nbFlare;
+        m_HUDText.text = ("X" + FlareNumber);
     }
 
     public void setLose(){
