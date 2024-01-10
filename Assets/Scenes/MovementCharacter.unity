@@ -922,6 +922,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1796023831}
     - target: {fileID: 8211438897714039994, guid: 06714c15dbf57744da546a3b496d36e2, type: 3}
+      propertyPath: SlowInBallPool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211438897714039994, guid: 06714c15dbf57744da546a3b496d36e2, type: 3}
       propertyPath: crackGlowingStick
       value: 
       objectReference: {fileID: 144749621}
@@ -1060,7 +1064,7 @@ GameObject:
   - component: {fileID: 1862744791}
   m_Layer: 0
   m_Name: BallPool
-  m_TagString: Platform
+  m_TagString: BallPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
