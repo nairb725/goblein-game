@@ -15,5 +15,6 @@ public class GetFlare : MonoBehaviour
     // Update is called once per frame
    private void OnTriggerEnter(Collider other) {
     gameManager.restockFlare(gainFlare);
+        Destroy(gameObject);
    }
 }
