@@ -20,9 +20,6 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private AudioSource ThirdMusic;
 
-    private float oui = 35f;
-
-
     // Start is called before the first frame update
     void Start()
     {
