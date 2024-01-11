@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     public void setLose(){
         isLose = true;
     }
+    public bool getLose(){
+        return isLose;
+    }
 
     public void endGame() {
         if(isLose){
