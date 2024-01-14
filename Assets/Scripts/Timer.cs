@@ -30,8 +30,6 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(timeLeft);
-
         if (timeLeft > 0 &&  inGame == true) {
             timeLeft -= Time.deltaTime;
             timerbar.fillAmount = timeLeft/maxTime;

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private float FlareNumber;
 
     [SerializeField]
-    private float winDelay = 18.0f;
+    private float winDelay = 1.0f;
     [SerializeField]
     private float loseDelay = 5.0f;
     public bool isLightning = false;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void endGame() {
-        if(isLose){
+        if(isLose == false){
             Invoke("returnToMenu", loseDelay);
         }else{
             Invoke("returnToMenu", winDelay);

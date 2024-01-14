@@ -90,7 +90,7 @@ public class MovementCharacter : MonoBehaviour
         }
 
         // Jump 
-        if (Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) )
         {
             verticalSpeed = CalculateJumpVerticalSpeed();
         }
